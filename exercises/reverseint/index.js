@@ -24,7 +24,6 @@ function reverseInt(n) {
   //   }
   //   return nR;
   // Method 2
-
   return (
     parseInt(
       n
