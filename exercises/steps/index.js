@@ -17,7 +17,7 @@
 //       '### '
 //       '####'
 
-function steps(n) {
+function steps(n, row = 0, stair = "") {
   // Method 1
   //   for (row = 0; row < n; row++) {
   //     let stair = "";
@@ -30,7 +30,25 @@ function steps(n) {
   //     }
   //     console.log(stair);
   //   }
-  // Method 2
+  // Method 2 (Recursive)
+
+  if (row === n) {
+    return;
+  }
+  if (n === stair.length) {
+    console.log(stair);
+    return steps(n, row + 1);
+  }
+
+  const add = stair.length <= row ? "#" : " ";
+  //   This Turnary solution is equal to the if statment below
+  //   if (stair.length <= row) {
+  //     stair += "#";
+  //   } else {
+  //     stair += " ";
+  //   }
+
+  steps(n, row, stair + add);
 }
 
 module.exports = steps;

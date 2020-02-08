@@ -8,6 +8,18 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {}
+function fib(n) {
+  // Method 1 (linear run time)
+  //   let arr = [0, 1];
+  //   for (i = 2; i <= n; i++) {
+  //     arr.push(arr[i - 1] + arr[i - 2]);
+  //   }
+  //   return arr[n];
+  //   Method 2 (recursion)
+  if (n < 2) {
+    return n;
+  }
+  return fib(n - 1) + fib(n - 2);
+}
 
 module.exports = fib;
