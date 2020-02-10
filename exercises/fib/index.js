@@ -8,18 +8,40 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {
-  // Method 1 (linear run time)
-  //   let arr = [0, 1];
-  //   for (i = 2; i <= n; i++) {
-  //     arr.push(arr[i - 1] + arr[i - 2]);
-  //   }
-  //   return arr[n];
-  //   Method 2 (recursion)
+// function fib(n) {
+//   // Method 1 (linear run time)
+//   //   let arr = [0, 1];
+//   //   for (i = 2; i <= n; i++) {
+//   //     arr.push(arr[i - 1] + arr[i - 2]);
+//   //   }
+//   //   return arr[n];
+//   // Method 2 (recursion)(expo run time)
+//   //   if (n < 2) {
+//   //     return n;
+//   //   }
+//   //   return fib(n - 1) + fib(n - 2);
+// }
+function memoize(fn) {
+  const cache = {};
+  return function(...args) {
+    if (cache[args]) {
+      return cache[args];
+    }
+
+    const result = fn.apply(this, args);
+    cache[args] = result;
+
+    return result;
+  };
+}
+
+function slowFib(n) {
   if (n < 2) {
     return n;
   }
+
   return fib(n - 1) + fib(n - 2);
 }
 
+const fib = memoize(slowFib);
 module.exports = fib;
